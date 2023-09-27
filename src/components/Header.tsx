@@ -61,7 +61,7 @@ export const Header = () => {
             <div className={cart ? 'fixed max-w-[410px] w-full h-screen bg-white shadow-black/20 shadow-md top-[78px] right-0  ease-out duration-300 flex flex-col justify-between' : 'fixed max-w-[300px] w-full h-screen bg-white shadow-black/20 shadow-md top-[78px] right-[-300px] ease-out duration-300 flex flex-col justify-between'}>
                 <div className='p-4 flex flex-col overflow-y-auto'>
                     {searchCtx?.addProduct.map(item => (
-                        <div className='flex mb-5 border-b pb-2 last:border-none'>
+                        <div key={item.id} className='flex mb-5 border-b pb-2 last:border-none'>
                             <img src={item.thumbnail?.replace(/\w\.jpg/gi, 'W.jpg')} alt={item.title} className="h-[70px]" />
                             <div className='flex flex-col relative  pr-10 w-full'>
                                 <p className='text-xs'>{item.title}</p>
