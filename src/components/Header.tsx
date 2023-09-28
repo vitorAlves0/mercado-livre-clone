@@ -13,7 +13,7 @@ export const Header = () => {
     const searchCtx = useSearch();
 
     const handleSendInfor = async () => {
-        if (inputValue !== '') {
+        if (inputValue.trim() !== '') {
             searchCtx?.setLoading(true)
             const products = await fetchProducts(inputValue);
             searchCtx?.setProduct(products);
