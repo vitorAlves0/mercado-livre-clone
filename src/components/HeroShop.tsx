@@ -4,6 +4,7 @@ import { DataType } from "@/types/DataType";
 import { useEffect } from "react"
 import { BsFillCartPlusFill } from 'react-icons/bs';
 import { BiLoaderAlt } from 'react-icons/bi';
+import { v4 as uuidv4 } from "uuid"
 
 export const HeroShop = () => {
 
@@ -13,13 +14,12 @@ export const HeroShop = () => {
         searchCtx?.setLoading(true)
         fetchProducts("iphone").then(response => {
             searchCtx?.setProduct(response)
-            console.log(searchCtx?.product)
             searchCtx?.setLoading(false)
         })
     }, [])
 
     const handleAddProduct = (item: DataType) => {
-        searchCtx?.setAddProduct([...searchCtx.addProduct, item]);
+        searchCtx?.setAddProduct([...searchCtx.addProduct, { title: item.title, price: item.price, thumbnail: item.thumbnail, productId: uuidv4() }]);
         console.log(searchCtx?.addProduct)
     }
 
@@ -34,7 +34,7 @@ export const HeroShop = () => {
                 {!searchCtx?.loading &&
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
                         {searchCtx?.product.map(item => (
-                            <div key={item.id} className="group relative flex flex-col items-center rounded-md shadow-black/10 shadow-lg hover:scale-105 duration-300">
+                            <div key={item.productId} className="group relative flex flex-col items-center rounded-md shadow-black/10 shadow-lg hover:scale-105 duration-300">
                                 <img src={item.thumbnail?.replace(/\w\.jpg/gi, 'W.jpg')} alt={item.title} className="h-[100px] md:h-[150px] lg:h-[200px] my-5" />
                                 <div className="border-t p-4 w-full flex flex-col items-center">
                                     <p className="text-2xl md:text-3xl">R${item.price}</p>
