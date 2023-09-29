@@ -67,7 +67,7 @@ export const Header = () => {
                 <div className='flex items-center'>
                     <button className='ml-5 p-1 relative hover:scale-105 duration-300'>
                         <AiOutlineShoppingCart onClick={() => setCart(!cart)} size={30} className="text-gray-800" />
-                        <div className={`${searchCtx?.addProduct.length === 0 ? 'hidden' : 'flex'} absolute h-3 w-3 items-center justify-center p-[10px] text-white text-xs font-bold bg-red-600 rounded-full top-0 left-0`}>{quantityProducts}</div>
+                        <div className={`${searchCtx?.addProduct.length === 0 ? 'hidden' : 'flex'} absolute h-3 w-3 items-center justify-center p-[10px] text-white text-xs font-bold pointer-events-none  bg-red-600 rounded-full top-0 left-0`}>{quantityProducts}</div>
                     </button>
                 </div>
             </div>
@@ -78,7 +78,7 @@ export const Header = () => {
                         <div key={item.productId} className='flex mb-5 border-b pb-2 last:border-none'>
                             <img src={item.thumbnail?.replace(/\w\.jpg/gi, 'W.jpg')} alt={item.title} className="h-[70px]" />
                             <div className='flex flex-col relative  pr-10 w-full pl-1'>
-                                <p className='text-xs'>{item.title}</p>
+                                <p className='text-xs line-clamp-3'>{item.title}</p>
                                 <p className='text-xl'>{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                 <button onClick={() => handleDeleteProduct(item.productId)} className='absolute top-0 right-[2px] text-2xl text-red-600'>
                                     <BsCartDashFill />

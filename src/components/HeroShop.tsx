@@ -45,7 +45,7 @@ export const HeroShop = () => {
                             <div key={item.productId} className="group relative flex flex-col items-center rounded-md shadow-black/10 shadow-lg hover:scale-105 duration-300">
                                 <img src={item.thumbnail?.replace(/\w\.jpg/gi, 'W.jpg')} alt={item.title} className="h-[100px] md:h-[150px] lg:h-[200px] my-5" />
                                 <div className="border-t p-4 w-full flex flex-col items-center ">
-                                    <p className="text-2xl md:text-3xl">{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                    <p className="text-xl md:text-2xl">{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                     <p className="text-gray-600 text-xs md:text-base text-center line-clamp-3 break-words">{item.title}</p>
                                 </div>
                                 <button onClick={() => handleAddProduct(item)} className="absolute bg-gray-100/80 text-[#0c5dd6] h-9 w-9 group-hover:flex items-center justify-center rounded-full top-1 right-5 hidden">
