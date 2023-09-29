@@ -77,7 +77,7 @@ export const Header = () => {
                     {searchCtx?.addProduct.map(item => (
                         <div key={item.productId} className='flex mb-5 border-b pb-2 last:border-none'>
                             <img src={item.thumbnail?.replace(/\w\.jpg/gi, 'W.jpg')} alt={item.title} className="h-[70px]" />
-                            <div className='flex flex-col relative  pr-10 w-full'>
+                            <div className='flex flex-col relative  pr-10 w-full pl-1'>
                                 <p className='text-xs'>{item.title}</p>
                                 <p className='text-xl'>R${item.price}</p>
                                 <button onClick={() => handleDeleteProduct(item.productId)} className='absolute top-0 right-[2px] text-2xl text-red-600'>
@@ -90,6 +90,7 @@ export const Header = () => {
 
                 </div>
                 <div className='pb-[90px] pt-4 text-3xl text-center border-t'>R${valueFinal}</div>
+                <div className={`${searchCtx?.addProduct.length === 0 ? 'absolute w-full top-[320px] xl:top-[250px] left-[100px] md:left-[110px] text-2xl' : 'hidden'}`}>Nada a exibir 😢</div>
             </div>
         </div>
     )
