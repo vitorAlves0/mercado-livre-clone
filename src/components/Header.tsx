@@ -59,8 +59,8 @@ export const Header = () => {
         <div className="fixed w-full bg-[#fff159] p-5 z-10 shadow-black/20 shadow-md">
             <div className="max-w-5xl mx-auto flex justify-between items-center">
                 <div className='max-w-[280px] sm:max-w-md md:max-w-lg w-full flex'>
-                    <input value={inputValue} onChange={(event) => setInputValue(event.target.value)} onKeyDown={handleOnkeyUp} type="text" className='outline-none px-4 py-1 w-full rounded-l-md' />
-                    <button className='bg-gray-100 px-2 rounded-r-md'>
+                    <input value={inputValue} onChange={(event) => setInputValue(event.target.value)} onKeyDown={handleOnkeyUp} type="text" placeholder='Buscar produtos' className='outline-none px-4 py-2 w-full rounded-l-md placeholder:font-light' />
+                    <button className='bg-gray-100 px-3 rounded-r-md'>
                         <BsSearch onClick={handleSendInfor} className='text-gray-800' />
                     </button>
                 </div>
@@ -79,7 +79,7 @@ export const Header = () => {
                             <img src={item.thumbnail?.replace(/\w\.jpg/gi, 'W.jpg')} alt={item.title} className="h-[70px]" />
                             <div className='flex flex-col relative  pr-10 w-full pl-1'>
                                 <p className='text-xs'>{item.title}</p>
-                                <p className='text-xl'>R${item.price}</p>
+                                <p className='text-xl'>{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                                 <button onClick={() => handleDeleteProduct(item.productId)} className='absolute top-0 right-[2px] text-2xl text-red-600'>
                                     <BsCartDashFill />
                                 </button>
@@ -89,7 +89,7 @@ export const Header = () => {
                     ))}
 
                 </div>
-                <div className='pb-[90px] pt-4 text-3xl text-center border-t'>R${valueFinal}</div>
+                <div className='pb-[90px] pt-4 text-3xl text-center border-t'>{valueFinal?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</div>
                 <div className={`${searchCtx?.addProduct.length === 0 ? 'absolute w-full top-[320px] xl:top-[250px] left-[100px] md:left-[110px] text-2xl' : 'hidden'}`}>Nada a exibir 😢</div>
             </div>
         </div>
