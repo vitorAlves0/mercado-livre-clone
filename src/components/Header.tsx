@@ -67,7 +67,7 @@ export const Header = () => {
                 <div className='flex items-center'>
                     <button className='ml-5 p-1 relative hover:scale-105 duration-300'>
                         <AiOutlineShoppingCart onClick={() => setCart(!cart)} size={30} className="text-gray-800" />
-                        <div className={`${searchCtx?.addProduct.length === 0 ? 'hidden' : 'flex'} absolute h-3 w-3 items-center justify-center p-[10px] text-white text-xs font-bold pointer-events-none  bg-red-600 rounded-full top-0 left-0`}>{quantityProducts}</div>
+                        <div className={`${searchCtx?.addProduct.length === 0 ? 'hidden' : 'flex'} absolute h-3 w-3 items-center justify-center p-[10px] text-white text-xs font-bold pointer-events-none focus:border-none  bg-red-600 rounded-full top-0 left-0`}>{quantityProducts}</div>
                     </button>
                 </div>
             </div>
