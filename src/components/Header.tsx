@@ -72,7 +72,7 @@ export const Header = () => {
                 </div>
             </div>
 
-            <div className={cart ? 'fixed max-w-[410px] w-full h-screen bg-white shadow-black/20 shadow-md top-[78px] right-0  ease-out duration-300 flex flex-col justify-between' : 'fixed max-w-[300px] w-full h-screen bg-white shadow-black/20 shadow-md top-[78px] right-[-300px] ease-out duration-300 flex flex-col justify-between'}>
+            <div className={cart ? 'fixed max-w-[410px] w-full h-screen bg-white shadow-black/20 shadow-md top-[80px] right-0  ease-out duration-300 flex flex-col justify-between' : 'fixed max-w-[300px] w-full h-screen bg-white shadow-black/20 shadow-md top-[80px] right-[-300px] ease-out duration-300 flex flex-col justify-between'}>
                 <div className='p-4 flex flex-col overflow-y-auto'>
                     {searchCtx?.addProduct.map(item => (
                         <div key={item.productId} className='flex mb-5 border-b pb-2 last:border-none'>
