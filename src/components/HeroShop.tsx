@@ -19,15 +19,23 @@ export const HeroShop = () => {
     }, [])
 
     const handleAddProduct = (item: DataType) => {
-        searchCtx?.setAddProduct([...searchCtx.addProduct, { title: item.title, price: item.price, thumbnail: item.thumbnail, productId: uuidv4() }]);
-        console.log(searchCtx?.addProduct)
+        if (searchCtx?.addProduct) {
+            const copyProduct = [...searchCtx.addProduct]
+            const findValue = copyProduct.find(data => data.id === item.id)
+            if (findValue === undefined) {
+                copyProduct.push({ id: item.id, title: item.title, price: item.price, thumbnail: item.thumbnail, productId: uuidv4(), quantity: 1 })
+            } else {
+                findValue.quantity = findValue.quantity + 1;
+            }
+            searchCtx?.setAddProduct(copyProduct)
+        }
     }
 
     return (
         <div className="bg-white p-5">
             <div className="container max-w-5xl mx-auto mt-20">
                 {searchCtx?.loading &&
-                    <div className="absolute top-[300px] left-[650px] text-6xl">
+                    <div className="h-screen text-6xl flex items-center justify-center mt-[-120px]">
                         <BiLoaderAlt className="animate-spin" />
                     </div>
                 }
@@ -51,3 +59,29 @@ export const HeroShop = () => {
         </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const handleAddProduct = (item: DataType) => {
+//     const copyProduct = [...searchCtx.addProduct]
+//     if (searchCtx?.addProduct.find(data => data.id === item.id) === undefined) {
+//         searchCtx?.setAddProduct([...searchCtx.addProduct, { id: item.id, title: item.title, price: item.price, thumbnail: item.thumbnail, productId: uuidv4(), quantity: 1 }]);
+//     } else {
+//         item.quantity = item.quantity + 1;
+//         console.log(item.quantity)
+//     }
+
+
+// }

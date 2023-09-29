@@ -30,14 +30,29 @@ export const Header = () => {
     }
 
     const valueFinal = searchCtx?.addProduct.reduce((acc, item) => {
-        return acc + item.price
+        return acc + (item.price * item.quantity)
+    }, 0)
+
+    const quantityProducts = searchCtx?.addProduct.reduce((acc, item) => {
+        return acc + item.quantity
     }, 0)
 
     const handleDeleteProduct = (id: string) => {
-        const newProduct = searchCtx?.addProduct.filter(item => item.productId !== id)
-        if (newProduct) {
-            searchCtx?.setAddProduct(newProduct)
+        //const newProduct = searchCtx?.addProduct.filter(item => item.productId !== id)
+        if (searchCtx?.addProduct) {
+            const newProduct = [...searchCtx.addProduct]
+            const quantityOne = newProduct.find(item => item.productId === id);
+            if (quantityOne) {
+                if (quantityOne.quantity > 1) {
+                    quantityOne.quantity = quantityOne.quantity - 1;
+                    searchCtx.setAddProduct(newProduct)
+                } else {
+                    const deleteProduct = newProduct.filter(item => item.productId !== id)
+                    searchCtx.setAddProduct(deleteProduct)
+                }
+            }
         }
+        //searchCtx?.setAddProduct(searchCtx?.addProduct.filter(item => item.productId !== id))
     }
 
     return (
@@ -52,7 +67,7 @@ export const Header = () => {
                 <div className='flex items-center'>
                     <button className='ml-5 p-1 relative hover:scale-105 duration-300'>
                         <AiOutlineShoppingCart onClick={() => setCart(!cart)} size={30} className="text-gray-800" />
-                        <div className={`${searchCtx?.addProduct.length === 0 ? 'hidden' : 'flex'} absolute h-3 w-3 items-center justify-center p-2 text-white text-xs font-bold bg-red-600 rounded-full top-0`}>{searchCtx?.addProduct.length}</div>
+                        <div className={`${searchCtx?.addProduct.length === 0 ? 'hidden' : 'flex'} absolute h-3 w-3 items-center justify-center p-[10px] text-white text-xs font-bold bg-red-600 rounded-full top-0 left-0`}>{quantityProducts}</div>
                     </button>
                 </div>
             </div>
@@ -65,9 +80,10 @@ export const Header = () => {
                             <div className='flex flex-col relative  pr-10 w-full'>
                                 <p className='text-xs'>{item.title}</p>
                                 <p className='text-xl'>R${item.price}</p>
-                                <button onClick={() => handleDeleteProduct(item.productId)} className='absolute top-4 right-0 text-2xl text-red-600'>
+                                <button onClick={() => handleDeleteProduct(item.productId)} className='absolute top-0 right-[2px] text-2xl text-red-600'>
                                     <BsCartDashFill />
                                 </button>
+                                <p className='absolute bottom-0 right-0 bg-green-600 text-white h-3 w-3 rounded-full p-3 text-sm flex items-center justify-center'>{item.quantity}</p>
                             </div>
                         </div>
                     ))}

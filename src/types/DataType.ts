@@ -1,6 +1,8 @@
 export type DataType = {
+  id: string;
+  productId: string;
   title: string;
   price: number;
   thumbnail: string;
-  productId: string;
+  quantity: number;
 };
